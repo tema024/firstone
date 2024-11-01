@@ -1,4 +1,4 @@
-with open("input.txt", "r") as file:
+with open("in.txt", "r") as file:
     lines = file.readlines()
     numbers = list(map(int, lines[0].split()))
     op = lines[1].strip()
@@ -14,5 +14,5 @@ elif op == "*":
     for n in numbers:
         result *= n
 
-with open("output.txt", "w") as file:
+with open("out.txt", "w") as file:
     file.write(str(result))
