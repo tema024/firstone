@@ -13,14 +13,22 @@ class Vector:
     def __repr__(self):
         return f"Vector({self.x}, {self.y}, {self.z})"
 
-    def __add__(self, num):
-        return Vector(self.x + num, self.y + num, self.z + num)
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
+        elif isinstance(other, (int, float)):
+            return Vector(self.x + other, self.y + other, self.z + other)
+            
+    def __radd__(self, other):
+        return self.__add__(other)
 
-    def __radd__(self, num):
-        return 'false'
-
-    def __sub__(self, num):
-        return Vector(self.x - num, self.y - num, self.z - num)
+    def __sub__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
+        elif isinstance(other, (int, float)):
+            return Vector(self.x - other, self.y - other, self.z - other)
+        else:
+            raise TypeError("Unsupported type for subtraction with Vector")
 
     def __abs__(self):
         return (self.x ** 2 + self.y ** 2 + self.z ** 2) ** 0.5
@@ -29,13 +37,17 @@ class Vector:
         return self.x * vec.x + self.y * vec.y + self.z * vec.z
 
     def __mul__(self, num):
-        return Vector(self.x * num, self.y * num, self.z * num)
+        if isinstance(num, (int, float)):
+            return Vector(self.x * num, self.y * num, self.z * num)
+        else:
+            raise TypeError("Unsupported type for multiplication with Vector")
 
     def vecadd(self, vec):
         return Vector((self.x + vec.x), (self.y + vec.y), (self.z + vec.z))
 
     def vecsol(self, vec):
         return Vector((self.x - vec.x), (self.y - vec.y), (self.z - vec.z))
+
 
 a = Vector(1, 2, 3)
 b = Vector(4, 5, 6)
