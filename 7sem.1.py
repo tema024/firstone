@@ -27,8 +27,6 @@ class Vector:
             return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
         elif isinstance(other, (int, float)):
             return Vector(self.x - other, self.y - other, self.z - other)
-        else:
-            raise TypeError("Unsupported type for subtraction with Vector")
 
     def __abs__(self):
         return (self.x ** 2 + self.y ** 2 + self.z ** 2) ** 0.5
@@ -39,8 +37,6 @@ class Vector:
     def __mul__(self, num):
         if isinstance(num, (int, float)):
             return Vector(self.x * num, self.y * num, self.z * num)
-        else:
-            raise TypeError("Unsupported type for multiplication with Vector")
 
     def vecadd(self, vec):
         return Vector((self.x + vec.x), (self.y + vec.y), (self.z + vec.z))
